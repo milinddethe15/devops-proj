@@ -17,10 +17,9 @@ public class DemoApplication {
     private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
     @GetMapping("/")
     public String index(final Model model) {
-
         String podIp = null;
         try {
-            podIp = InetAddress.getLocalHost().getHostAddress();
+            podIp = getLocalHostAddress();
         } catch (UnknownHostException e) {
             logger.error(e.toString());
             throw new RuntimeException(e);
@@ -33,6 +32,10 @@ public class DemoApplication {
         model.addAttribute("title", "This is a Spring Boot demo app version v2.0");
         model.addAttribute("msg", "Implemented using DevOps.");
         return "index";
+    }
+
+    protected String getLocalHostAddress() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostAddress();
     }
 
     public static void main(String[] args) {
