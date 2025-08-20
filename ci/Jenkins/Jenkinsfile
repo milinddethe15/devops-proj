@@ -13,7 +13,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd demo-java-app && mvn clean package'
+        sh 'cd demo-java-app && mvn -B clean verify'
       }
     }
     stage('Static Code Analysis') {
